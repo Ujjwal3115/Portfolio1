@@ -764,6 +764,56 @@ main {
 }
 
 
+/* Add these new styles */
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.mobile-theme-btn {
+  display: none;
+}
+
+.site-logo {
+  transition: opacity 0.3s ease;
+}
+
+/* Update media query for mobile */
+@media (max-width: 580px) {
+  .site-logo {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .theme-btn {
+    display: none;
+  }
+
+  .mobile-theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 18px;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .button-group {
+    justify-content: space-between;
+  }
+
+  .info_more-btn {
+    flex: 1;
+    margin-top: 75px;
+  }
+}
+
 
 /*-----------------------------------*\
   #ABOUT
