@@ -227,4 +227,56 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ...existing code...
+
+// Add the button group functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Create button container
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-group';
+
+  // Get the existing buttons
+  const infoBtn = document.querySelector('.info_more-btn');
+  const themeBtn = document.querySelector('.mobile-theme-btn');
+
+  // Get parent element
+  const sidebarInfo = document.querySelector('.sidebar-info');
+
+  // Rearrange buttons
+  if (infoBtn && themeBtn && sidebarInfo) {
+    // Remove buttons from current position
+    infoBtn.parentNode.removeChild(infoBtn);
+    themeBtn.parentNode.removeChild(themeBtn);
+
+    // Add buttons to container
+    buttonContainer.appendChild(infoBtn);
+    buttonContainer.appendChild(themeBtn);
+
+    // Add container to sidebar
+    sidebarInfo.appendChild(buttonContainer);
+  }
+
+  // Handle responsive behavior
+  const handleResize = () => {
+    const width = window.innerWidth;
+    if (width <= 580) {
+      document.querySelector('.site-logo').style.opacity = '0';
+      document.querySelector('.theme-btn').style.display = 'none';
+      document.querySelector('.mobile-theme-btn').style.display = 'flex';
+    } else {
+      document.querySelector('.site-logo').style.opacity = '1';
+      document.querySelector('.theme-btn').style.display = 'flex';
+      document.querySelector('.mobile-theme-btn').style.display = 'none';
+    }
+  };
+
+  // Initial check
+  handleResize();
+
+  // Listen for window resize
+  window.addEventListener('resize', handleResize);
+});
+
+// ...rest of existing code...
+
   
