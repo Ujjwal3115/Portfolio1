@@ -1265,60 +1265,6 @@
             });
     });
 </script>
-<script>
-  const themeBtn = document.querySelector("[data-theme-btn]");
-
-// Update the theme button click handler
-themeBtn.addEventListener("click", function (e) {
-// Existing theme change code
-document.body.setAttribute("data-theme", 
-  document.body.getAttribute("data-theme") === "light" ? "dark" : "light"
-);
-
-localStorage.setItem("theme", document.body.getAttribute("data-theme"));
-
-themeBtn.querySelector("ion-icon").setAttribute("name",
-  document.body.getAttribute("data-theme") === "light" ? "sunny-outline" : "moon-outline"
-);
-
-// Add burst animation
-createBurst(e.clientX, e.clientY);
-});
-
-// Add this function for the burst animation
-// Update the createBurst function
-function createBurst(x, y) {
-// Create multiple emojis that flow from right to left
-const numberOfEmojis = 20; // Increased number of emojis
-
-for (let i = 0; i < numberOfEmojis; i++) {
-  setTimeout(() => {
-    const emoji = document.createElement('div');
-    emoji.className = 'burst-emoji';
-    emoji.textContent = '🍃';
-    
-    // Start from right side of screen
-    emoji.style.right = '-50px';
-    // Random vertical position
-    emoji.style.top = Math.random() * window.innerHeight + 'px';
-    
-    // Random size
-    const size = 20 + Math.random() * 30;
-    emoji.style.fontSize = `${size}px`;
-    
-    // Random animation duration
-    emoji.style.animationDuration = (1.5 + Math.random()) + 's';
-    
-    document.body.appendChild(emoji);
-    
-    // Remove after animation
-    setTimeout(() => {
-      emoji.remove();
-    }, 2000);
-  }, i * 100); // Stagger the creation of emojis
-}
-}
-</script>
 
 
 
