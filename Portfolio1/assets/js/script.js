@@ -124,6 +124,51 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.preview-btn')) {
+    e.stopPropagation();
+    const certificateContainer = e.target.closest('.certificate-header');
+    const img = certificateContainer.querySelector('img');
+    
+    const fullView = document.createElement('div');
+    fullView.className = 'full-view-modal';
+    fullView.innerHTML = `
+      <div class="full-view-content">
+        <button class="close-full-view">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <img src="${img.src}" alt="Certificate Preview">
+      </div>
+    `;
+    document.body.appendChild(fullView);
+
+    // Add modal animation
+    requestAnimationFrame(() => {
+      fullView.classList.add('active');
+    });
+
+    // Close modal function
+    const closeFullView = () => {
+      fullView.classList.remove('active');
+      setTimeout(() => {
+        document.body.removeChild(fullView);
+      }, 300);
+    };
+
+    // Close handlers
+    fullView.addEventListener('click', closeFullView);
+    fullView.querySelector('.close-full-view').addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeFullView();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeFullView();
+    }, { once: true });
+  }
+});
+
 // Theme and Button Group functionality
 document.addEventListener('DOMContentLoaded', () => {
   // Create burst animation
